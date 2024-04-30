@@ -1,0 +1,60 @@
+a {
+    text-decoration: none;
+}
+
+nav {
+    background-color: rgb(217, 217, 245);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.home-logo {
+    margin: 13px;
+    height: 30px;
+    width: 30px;
+
+}
+
+.links {
+    padding: 20px;
+}
+
+.links a {
+    margin: 5px;
+}
+
+section {
+    height: 350px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    margin: 2px;
+}
+
+#about {
+    background-color: #A3D8FF;
+}
+
+#contact {
+    background-color: #FDFFC2;
+}
+
+#services {
+    background-color: #94FFD8;
+}
+
+#home {
+    background-color: #f7b2df;
+}
+
+footer {
+    /* background-color: black; */
+    /* border-radius: px; */
+
+}
+
+.copyright {
+    /* color: beige; */
+}
