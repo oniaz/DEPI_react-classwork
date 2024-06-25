@@ -1,0 +1,25 @@
+.quest{
+    background-color: rgb(170, 198, 225);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 20px;
+    padding-left: 55px;
+    padding-right: 55px;
+    margin: 15px;
+}
+label, input, button{
+    margin: 2px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .quest button {
+    
+} */
