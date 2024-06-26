@@ -46,6 +46,30 @@ document.getElementById('btn_4').addEventListener('click', function () {
     }
 })
 
+document.getElementById('btn_5').addEventListener('click', function () {
+    var num1 = Number(document.getElementById('num1_q5').value);
+    var op = document.getElementById('op_q5').value;
+    var num2 = Number(document.getElementById('num2_q5').value);
+    var res
+    console.log(num1)
+    console.log(op)
+    console.log(num2)
+
+    if (op == '+') {
+        res = num1 + num2
+    } else if (op == '-') {
+        res = num1 - num2
+    } else if (op == '*') {
+        res = num1 * num2
+    } else if (op == '/') {
+        res = num1 / num2
+    } else {
+        res = op
+    }
+    console.log(res)
+    document.getElementById('res_5').innerHTML = res;
+})
+
 // || or
 // && and
 

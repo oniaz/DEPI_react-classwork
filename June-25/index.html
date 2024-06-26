@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sheet 2: Conditions</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Sheet 2: Conditions</h1>
     <div class="quest">
@@ -18,7 +20,7 @@
         <input type="text" id="num2_q1">
 
         <button id="btn_1">get max number</button>
-        <h2 id="res_1">result</h2> 
+        <h2 id="res_1">result</h2>
     </div>
 
     <div class="quest">
@@ -34,7 +36,7 @@
         <input type="text" id="num3_q2">
 
         <button id="btn_2">get max number</button>
-        <h2 id="res_2">result:</h2> 
+        <h2 id="res_2">result</h2>
     </div>
 
     <div class="quest">
@@ -44,7 +46,7 @@
         <input type="text" id="num_q3">
 
         <button id="btn_3">check</button>
-        <h2 id="res_3">result:</h2> 
+        <h2 id="res_3">result</h2>
     </div>
 
     <div class="quest">
@@ -53,16 +55,39 @@
 
         <label>from</label>
         <input type="text" id="num1_q4">
-    
+
         <label>to</label>
         <input type="text" id="num2_q4">
-        
+
         <label>Enter the number:</label>
         <input type="text" id="num3_q4">
-        
+
         <button id="btn_4">check</button>
-        <h2 id="res_4">result:</h2> 
+        <h2 id="res_4">result</h2>
+    </div>
+
+    <div class="quest">
+        <h1>Question 5: Calculator</h1>
+
+        <label>First Number</label>
+        <input type="text" id="num1_q5">
+
+        <label>Operator</label>
+        <!-- <input type="text" id="op_q5"> -->
+        <select id="op_q5">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+
+        <label>Second Number</label>
+        <input type="text" id="num2_q5">
+        <button id="btn_5">calculate</button>
+
+        <h2 id="res_5">result</h2>
     </div>
     <script src="index.js"></script>
 </body>
+
 </html>

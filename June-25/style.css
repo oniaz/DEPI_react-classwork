@@ -20,6 +20,12 @@ body{
     align-items: center;
 }
 
-/* .quest button {
-    
-} */
+.quest:hover {
+    transition: 1s;
+    background-color:  rgb(146, 177, 209);
+    box-shadow: 0 10px 15px;
+}
+
+button{
+    cursor: pointer;
+}
