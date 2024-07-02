@@ -1,0 +1,50 @@
+.container {
+    width: fit-content;
+    margin: auto;
+    padding: 10px 20px; 
+
+    /* top and bottom 5px, left anmd right 10px */
+    position: relative;
+
+    border-radius: 10px;
+    background-color:rgb(190, 128, 248);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container:hover {
+    scale: 1;
+    transition: 0.3s ease;
+    background-color:rgb(178, 102, 250);
+    box-shadow: 0 5px 5px;
+}
+.container button {
+    align-self: flex-end;
+}
+button {
+    margin: 10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    /* position:absolute;
+    top: 25px;
+    right: 25px; */
+    color:rgb(96, 37, 150);
+    border-style: none;
+    cursor: pointer;
+}
+
+input{
+    border-radius: 5px;
+    padding: 10px;
+    border-style: none;
+
+}
+
+label {
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    /* bold */
+}
