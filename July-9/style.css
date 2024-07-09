@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;;
+
+}
+
+.search {
+    background-color: rgb(55, 82, 235);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search label {
+    color: white;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.search input {
+    min-width: 250px;
+    border-radius: 7px;
+    border: none;
+    margin: 5px 20px;
+    padding: 8px 12px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.search button {
+    background-color: rgb(255, 255, 255);
+    padding: 5px 8px;
+    margin: auto 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    color: rgb(55, 82, 235);
+    padding: 8px 15px;
+    font-size: 16px;
+}
+
+.search button:hover {
+    background-color: #f0f0f0;
+}
+
+.card {
+    width: 15%;
+    background-color: rgb(167, 150, 150);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    min-width: 250px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card h1 {
+    font-size: 25px;
+    margin: 4px 0px;
+    font-family: sans-serif;
+}
+
+.card p {
+    font-weight: 500;
+}
+
+.card .price {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 4px;
+}
+
+.card span {
+    color: rgb(198, 198, 198);
+    font-size: 15px;
+}
+
+.card button {
+    background-color: rgb(255, 255, 113);
+    padding: 5px 8px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: rgb(255, 217, 0);
+}
+
+#pro-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
