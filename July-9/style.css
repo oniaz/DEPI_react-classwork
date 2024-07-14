@@ -2,11 +2,14 @@
     margin: 0;
     padding: 0;
     font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;;
-
 }
 
+body {
+    background-color: aliceblue;
+
+}
 .search {
-    background-color: rgb(55, 82, 235);
+    background-color: rgb(114, 126, 197);
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
@@ -41,7 +44,7 @@
     border-radius: 20px;
     border: none;
     cursor: pointer;
-    color: rgb(55, 82, 235);
+    color: rgb(106, 122, 211);;
     padding: 8px 15px;
     font-size: 16px;
 }
@@ -52,7 +55,7 @@
 
 .card {
     width: 15%;
-    background-color: rgb(167, 150, 150);
+    background-color: rgb(190, 197, 204);
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
@@ -86,7 +89,7 @@
 }
 
 .card span {
-    color: rgb(198, 198, 198);
+    color: rgb(89, 89, 89);
     font-size: 15px;
 }
 
