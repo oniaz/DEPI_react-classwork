@@ -14,12 +14,14 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 550px;
 }
 
 .search label {
     color: white;
     margin-right: 10px;
     font-weight: bold;
+    width: 120px;
 }
 
 .search input {

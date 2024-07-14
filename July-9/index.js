@@ -54,3 +54,33 @@ document.getElementById('search-button').addEventListener('click', function () {
             `<h1>No results found</h1>`
     }
 })
+
+document.getElementById('price-search-button').addEventListener('click', function () {
+    root.innerHTML = ''
+    var max_price = document.getElementById('price-search-input').value;
+    max_price = parseInt(max_price)
+    console.log(max_price);
+    console.log(typeof(max_price));
+
+
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].price <= max_price) {
+            root.innerHTML +=
+                `<div class="card">
+                    <img src="poster.jpeg" alt="">
+                    <span>${products[i].brand}</span>
+                    <h1>${products[i].title}</h1>
+                    <p>${products[i].description}</p>
+                    <div class="price">
+                        <h4>${products[i].price} <span>EGP</span></h4>
+                        <button>add to cart</button>
+                    </div>
+                </div>`
+        }
+    }
+
+    if (root.innerHTML == '') {
+        root.innerHTML +=
+            `<h1>No results found</h1>`
+    }
+})
