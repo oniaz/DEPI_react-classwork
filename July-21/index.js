@@ -24,12 +24,22 @@ let currentUser;
 
 let loggedIn = false;
 
-// let currentUser = { email: "user@gmail.com", password: "11223344", admin: false };
+function dummyAdminLogin() {
+    currentUser = { email: "omnia@gmail.com", password: "12345678", admin: true },
+    toggleLoginLogout();
+    renderShop();
+}
 
-// let loggedIn = true;
+function dummyUserLogin() {
+    currentUser = { email: "user@gmail.com", password: "11223344", admin: false };
+    toggleLoginLogout();
+    renderShop();
+}
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    renderShop()
+    dummyAdminLogin();
+    // dummyUserLogin();
+    renderShop();
 });
 
 function renderCart() {
@@ -55,14 +65,15 @@ function renderCart() {
     root.appendChild(proCard);
 
     for (let i = 0; i < cart.length; i++) {
+        let item = products.find(item => item.id === cart[i]);
         proCard.innerHTML +=
             `<div class="card" id="">
-                <img src="${cart[i].image}" alt="">
-                <span>${cart[i].brand}</span>
-                <h1>${cart[i].title}</h1>
-                <p>${cart[i].description}</p>
+                <img src="${item.image}" alt="">
+                <span>${item.brand}</span>
+                <h1>${item.title}</h1>
+                <p>${item.description}</p>
                 <div class="price">
-                    <h4>${cart[i].price} <span>EGP</span></h4>
+                    <h4>${item.price} <span>EGP</span></h4>
                 </div>
             </div>`
     }
@@ -70,8 +81,7 @@ function renderCart() {
 
 function addToCart(id) {
     console.log("ID of Item added:", id);
-    item = products.find(item => item.id === id);
-    cart.push(item);
+    cart.push(id);
     alert("Item Added Successfully")
 }
 function renderAddItem() {
@@ -79,7 +89,7 @@ function renderAddItem() {
     root.innerHTML =
         `
     <div class="login-signin">
-        <form class="form">
+        <form class="form" onsubmit = "addItem(event)">
             <p class="form-title">Add items to the shop</p>
             <div class="input-container">
                 <input id="item-title" placeholder="Enter item title" required>
@@ -97,13 +107,14 @@ function renderAddItem() {
                 <input id="item-price" type="number" placeholder="Enter item price" required>
             </div>
 
-            <input type="submit" class="submit" value="add item" onclick = "addItem()">
+            <input type="submit" class="submit" value="add item">
         </form>
     </div>
     `
 }
 
-function addItem() {
+function addItem(event) {
+    event.preventDefault();
     const itemTitle = document.getElementById("item-title").value
     const itemBrand = document.getElementById("item-brand").value
     const itemDescription = document.getElementById("item-description").value
@@ -123,7 +134,7 @@ function renderLogin() {
     root.innerHTML =
         `
         <div class="login-signin">
-            <form class="form">
+            <form class="form" onsubmit="login(event)">
             <p class="form-title">Sign in to your account</p>
                 <div class="input-container">
                 <input id = "user-email" type="email" placeholder="Enter email" required>
@@ -134,7 +145,7 @@ function renderLogin() {
                 <span></span>
             </div>
 
-                <input type="submit" class="submit" value="Sign in" onclick="login()">
+                <input type="submit" class="submit" value="Sign in">
 
             <p class="signup-link">
                 No account?
@@ -150,7 +161,7 @@ function renderSignup() {
     root.innerHTML =
         `
         <div class="login-signin">
-            <form class="form">
+            <form class="form" onsubmit = "addUser(event)">
                 <p class="form-title">Create an account</p>
                 <div class="input-container">
                     <input id = "user-email" type="email" placeholder="Enter email" required>
@@ -163,13 +174,14 @@ function renderSignup() {
                     <span></span>
                 </div>
 
-                <input type="submit" class="submit" value= "Sign up" onclick = "addUser()">
+                <input type="submit" class="submit" value= "Sign up">
             </form>
         </div>
         `
 }
 
-function login() {
+function login(event) {
+    event.preventDefault();
     userEmail = document.getElementById("user-email").value;
     userPassword = document.getElementById("user-password").value;
     if (!(userEmail && userPassword && userPassword > 7)) {
@@ -196,7 +208,8 @@ function login() {
     }
 }
 
-function addUser() {
+function addUser(event) {
+    event.preventDefault();
     userEmail = document.getElementById("user-email").value;
     userPassword = document.getElementById("user-password").value;
     if (!(userEmail && userPassword && userPassword > 7)) {
@@ -222,7 +235,7 @@ function logout() {
 }
 
 function toggleLoginLogout() {
-    const navbar = document.getElementById("navbar");
+    const navbarLinks = document.getElementById("navbar-links");
 
     if (loggedIn) {
         loggedIn = false;
@@ -231,39 +244,39 @@ function toggleLoginLogout() {
 
         const navbarLogout = document.getElementById("navbar-logout");
         if (navbarLogout) {
-            navbar.removeChild(navbarLogout);
+            navbarLinks.removeChild(navbarLogout);
         }
 
         const navbarCart = document.getElementById("navbar-cart");
         if (navbarCart) {
-            navbar.removeChild(navbarCart);
+            navbarLinks.removeChild(navbarCart);
         }
 
         const navbarAddItem = document.getElementById("navbar-addItem");
         if (navbarAddItem) {
-            navbar.removeChild(navbarAddItem);
+            navbarLinks.removeChild(navbarAddItem);
         }
 
-        navbar.innerHTML +=
+        navbarLinks.innerHTML +=
             `<a id="navbar-login" href="#" onclick="renderLogin()">Login</a>`;
 
     } else {
         loggedIn = true;
         const navbarLogin = document.getElementById("navbar-login");
         if (navbarLogin) {
-            navbar.removeChild(navbarLogin);
+            navbarLinks.removeChild(navbarLogin);
         }
+
+        navbarLinks.innerHTML +=
+        `<a id="navbar-cart" href="#" onclick="renderCart()">Cart</a>`;
 
         if (currentUser.admin) {
             console.log("is admin")
-            navbar.innerHTML +=
+            navbarLinks.innerHTML +=
                 `<a id="navbar-addItem" href="#" onclick="renderAddItem()">Add Item</a>`;
         }
 
-        navbar.innerHTML +=
-            `<a id="navbar-cart" href="#" onclick="renderCart()">Cart</a>`;
-
-        navbar.innerHTML +=
+        navbarLinks.innerHTML +=
             `<a id="navbar-logout" href="#" onclick="logout()">Logout</a>`;
 
     }
@@ -297,7 +310,9 @@ function renderShop() {
                 <label id="price-search-label">Max price:</label>
                 <input id="price-search-input" placeholder="price" type="number">
             </div>
-            <button id="search-button" onclick="searchItem()">Search</button>
+            <div>
+                <button id="search-button" onclick="searchItem()">Search</button>
+            </div>
         </div>
 
 
