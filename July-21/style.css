@@ -10,13 +10,16 @@ body {
 }
 
 
-
+#shop-header {
+    font-size: xx-large;
+    margin-left: 50px;
+}
 
 /* Search */
 
 .search {
-    background-color: rgb(114, 126, 197);
-    border-radius: 20px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
     padding: 10px;
     margin: 10px 40px;
     display: flex;
@@ -26,21 +29,32 @@ body {
     min-width: 550px;
 }
 
-.search label {
+.search div {
+    margin: auto 13px;
+    
+}
+
+.search div label {
     color: white;
-    margin-right: 10px;
     font-weight: bold;
     width: 120px;
 }
 
-.search input {
-    min-width: 250px;
+.search div input {
     border-radius: 7px;
     border: none;
-    margin: 5px 20px;
+    margin: 5px 5px;
     padding: 8px 12px;
     font-size: 16px;
     text-align: center;
+}
+
+#price-search-input {
+width: 50px;
+}
+
+#search-input {
+    min-width: 250px;
 }
 
 .search button {
@@ -50,7 +64,7 @@ body {
     border-radius: 20px;
     border: none;
     cursor: pointer;
-    color: rgb(106, 122, 211);
+    color: rgb(0, 0, 0);
     ;
     padding: 8px 15px;
     font-size: 16px;
@@ -205,16 +219,18 @@ nav a:hover {
     line-height: 1.25rem;
     width: 300px;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03); */
 }
 
 .submit {
+    margin: 10px auto;
     display: block;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-    background-color: #4F46E5;
+    background-color: #5750d6;
     color: #ffffff;
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -241,25 +257,21 @@ nav a:hover {
 
 .message-container {
     background-color: rgb(255, 255, 113);
-    /* Light red background for emphasis */
     padding: 20px;
-    /* box-sizing: border-box; */
     display: flex;
-    margin: auto;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
+    width: 100%;
 }
 
 /* Style for the message box */
-.message {
+.message-box {
     text-align: center;
-    background-color: #fff;
-    border: 1px solid #f5c6cb;
     border-radius: 8px;
     padding: 20px;
     max-width: 500px;
     margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Style for the heading */

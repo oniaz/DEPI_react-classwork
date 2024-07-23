@@ -24,6 +24,9 @@ let currentUser;
 
 let loggedIn = false;
 
+// let currentUser = { email: "user@gmail.com", password: "11223344", admin: false };
+
+// let loggedIn = true;
 
 document.addEventListener('DOMContentLoaded', (event) => {
     renderShop()
@@ -33,10 +36,22 @@ function renderCart() {
     console.log(cart);
 
     const root = document.getElementById("root");
-    const proCard = document.createElement('div');
-    proCard.id = 'pro-card';
+
 
     root.innerHTML = ""
+    if (cart.length == 0) {
+        showMessage(
+            {
+                heading: "Your Cart is Empty",
+                paragraph: "It looks like you don’t have any items in your cart. Start adding items to begin shopping!"
+            },
+            "root"
+        );
+        return;
+    }
+
+    const proCard = document.createElement('div');
+    proCard.id = 'pro-card';
     root.appendChild(proCard);
 
     for (let i = 0; i < cart.length; i++) {
@@ -82,7 +97,7 @@ function renderAddItem() {
                 <input id="item-price" type="number" placeholder="Enter item price" required>
             </div>
 
-            <input type="submit" class="submit" value="Submit" onclick = "addItem()">
+            <input type="submit" class="submit" value="add item" onclick = "addItem()">
         </form>
     </div>
     `
@@ -94,8 +109,13 @@ function addItem() {
     const itemDescription = document.getElementById("item-description").value
     const itemPrice = document.getElementById("item-price").value
 
+    if (!(itemTitle && itemBrand && itemDescription && itemPrice)) {
+        return;
+    }
+
     item = { id: (products.length) + 1, brand: itemBrand, title: itemTitle, description: itemDescription, price: itemPrice, image: "./images/noimage.png" }
     products.push(item);
+    alert("Item added successfully!")
 }
 
 function renderLogin() {
@@ -132,7 +152,7 @@ function renderSignup() {
         <div class="login-signin">
             <form class="form">
                 <p class="form-title">Create an account</p>
-                    <div class="input-container">
+                <div class="input-container">
                     <input id = "user-email" type="email" placeholder="Enter email" required>
                     <span>
                     </span>
@@ -141,7 +161,7 @@ function renderSignup() {
                 <div class="input-container">
                     <input id = "user-password" type="password" placeholder="Enter password" minlength="8" required>
                     <span></span>
-                    </div>
+                </div>
 
                 <input type="submit" class="submit" value= "Sign up" onclick = "addUser()">
             </form>
@@ -267,17 +287,19 @@ function renderShop() {
     }
 
     root.innerHTML = `
+        <h1 id="shop-header">Shop</h1>
         <div class="search">
-            <label id="search-label">Search by item name/description</label>
-            <input id="search-input" placeholder="Enter item name or description" type="text">
-            <button id="search-button" onclick="searchByName()">Search</button>
+            <div>
+                <label id="search-label">Search by item name/description:</label>
+                <input id="search-input" placeholder="item name or description" type="text">
+            </div>
+            <div>
+                <label id="price-search-label">Max price:</label>
+                <input id="price-search-input" placeholder="price" type="number">
+            </div>
+            <button id="search-button" onclick="searchItem()">Search</button>
         </div>
 
-        <div class="search">
-            <label id="price-search-label">Search by price</label>
-            <input id="price-search-input" placeholder="Enter max price" type="text">
-            <button id="price-search-button" onclick="searchByPrice()">Search</button>
-        </div>
 
         <div id="pro-card">
         </div>
@@ -306,17 +328,20 @@ function renderAllItems() {
 // 
 // 
 
-function searchByName() {
+function searchItem() {
     const proCard = document.getElementById("pro-card")
     const query = document.getElementById('search-input').value;
-
+    let max_price = Number(document.getElementById('price-search-input').value);
+    if (!max_price) {
+        max_price = 10000;
+    };
     proCard.innerHTML = ''
 
     if (query)
         console.log(query);
 
     for (let i = 0; i < products.length; i++) {
-        if (products[i].title.includes(query) || products[i].description.includes(query)) {
+        if ((products[i].title.includes(query) || products[i].description.includes(query)) && products[i].price <= max_price) {
             proCard.innerHTML +=
                 `<div class="card">
                     <img src="${products[i].image}" alt="">
@@ -335,48 +360,48 @@ function searchByName() {
         showMessage(
             {
                 heading: "No Results Found",
-                paragraph: "Sorry, no items match your search criteria. Please try different keywords."
+                paragraph: "Sorry, no items match your search criteria."
             },
             "pro-card"
         );
     }
 }
 
-function searchByPrice() {
-    const max_price = Number(document.getElementById('price-search-input').value);
-    const proCard = document.getElementById("pro-card")
+// function searchByPrice() {
+//     const max_price = Number(document.getElementById('price-search-input').value);
+//     const proCard = document.getElementById("pro-card")
 
-    proCard.innerHTML = ''
-    // max_price = parseInt(max_price)
-    console.log(max_price);
-    console.log(typeof (max_price));
+//     proCard.innerHTML = ''
+//     // max_price = parseInt(max_price)
+//     // console.log(max_price);
+//     // console.log(typeof (max_price));
 
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].price <= max_price) {
-            proCard.innerHTML +=
-                `<div class="card">
-                    <img src="${products[i].image}" alt="">
-                    <span>${products[i].brand}</span>
-                    <h1>${products[i].title}</h1>
-                    <p>${products[i].description}</p>
-                    <div class="price">
-                        <h4>${products[i].price} <span>EGP</span></h4>
-                        <button>add to cart</button>
-                    </div>
-                </div>`
-        }
-    }
+//     for (let i = 0; i < products.length; i++) {
+//         if (products[i].price <= max_price) {
+//             proCard.innerHTML +=
+//                 `<div class="card">
+//                     <img src="${products[i].image}" alt="">
+//                     <span>${products[i].brand}</span>
+//                     <h1>${products[i].title}</h1>
+//                     <p>${products[i].description}</p>
+//                     <div class="price">
+//                         <h4>${products[i].price} <span>EGP</span></h4>
+//                         <button>add to cart</button>
+//                     </div>
+//                 </div>`
+//         }
+//     }
 
-    if (proCard.innerHTML == '') {
-        showMessage(
-            {
-                heading: "No Items Found",
-                paragraph: `Sorry, there are no items under ${max_price} EGP. Please try a higher price range or adjust your search criteria.`
-            },
-            "pro-card"
-        );
-    }
-}
+//     if (proCard.innerHTML == '') {
+//         showMessage(
+//             {
+//                 heading: "No Items Found",
+//                 paragraph: `Sorry, there are no items under ${max_price} EGP. Please try a higher price range or adjust your search criteria.`
+//             },
+//             "pro-card"
+//         );
+//     }
+// }
 
 
 
