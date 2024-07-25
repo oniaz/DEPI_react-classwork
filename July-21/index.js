@@ -37,7 +37,7 @@ function dummyUserLogin() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    dummyAdminLogin();
+    // dummyAdminLogin();
     // dummyUserLogin();
     renderShop();
 });
@@ -82,7 +82,7 @@ function renderCart() {
 function addToCart(id) {
     console.log("ID of Item added:", id);
     cart.push(id);
-    alert("Item Added Successfully")
+    alert("Added item to cart successfully")
 }
 function renderAddItem() {
     const root = document.getElementById("root")
