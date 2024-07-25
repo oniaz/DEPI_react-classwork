@@ -38,7 +38,7 @@ function dummyUserLogin() {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // dummyAdminLogin();
-    // dummyUserLogin();
+    dummyUserLogin();
     renderShop();
 });
 
@@ -74,6 +74,7 @@ function renderCart() {
                 <p>${item.description}</p>
                 <div class="price">
                     <h4>${item.price} <span>EGP</span></h4>
+                    <button onclick="removeFromCart(${item.id})">Remove</button>
                 </div>
             </div>`
     }
@@ -84,6 +85,17 @@ function addToCart(id) {
     cart.push(id);
     alert("Added item to cart successfully")
 }
+
+
+function removeFromCart(id) {
+    console.log("ID of Item to be removed:", id);
+    console.log("Cart before removal:", cart);
+    cart = cart.filter(item => item !== id);
+    console.log("Cart after removal:", cart);
+    renderCart();
+    alert("Removed item from cart successfully");
+}
+
 function renderAddItem() {
     const root = document.getElementById("root")
     root.innerHTML =
