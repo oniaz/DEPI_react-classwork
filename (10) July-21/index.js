@@ -14,7 +14,7 @@ let products = [
 ];
 
 let users = [
-    { email: "omnia@gmail.com", password: "12345678", admin: true },
+    { email: "admin@gmail.com", password: "12345678", admin: true },
     { email: "user@gmail.com", password: "11223344", admin: false }
 ];
 
@@ -25,7 +25,7 @@ let currentUser;
 let loggedIn = false;
 
 function dummyAdminLogin() {
-    currentUser = { email: "omnia@gmail.com", password: "12345678", admin: true },
+    currentUser = { email: "admin@gmail.com", password: "12345678", admin: true },
     toggleLoginLogout();
     renderShop();
 }
@@ -74,7 +74,7 @@ function renderCart() {
                 <p>${item.description}</p>
                 <div class="price">
                     <h4>${item.price} <span>EGP</span></h4>
-                    <button onclick="removeFromCart(${item.id})">Remove</button>
+                    <button id="remove-button" onclick="removeFromCart(${item.id})">Remove</button>
                 </div>
             </div>`
     }
@@ -304,7 +304,7 @@ function renderShop() {
         showMessage(
             {
                 heading: "You're not logged in",
-                paragraph: "Please log in first to view the shop items."
+                paragraph: "Please log in first to start shopping."
             },
             "root"
         );
@@ -312,7 +312,6 @@ function renderShop() {
     }
 
     root.innerHTML = `
-        <h1 id="shop-header">Shop</h1>
         <div class="search">
             <div>
                 <label id="search-label">Search by item name/description:</label>
