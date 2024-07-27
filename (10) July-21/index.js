@@ -26,7 +26,7 @@ let loggedIn = false;
 
 function dummyAdminLogin() {
     currentUser = { email: "admin@gmail.com", password: "12345678", admin: true },
-    toggleLoginLogout();
+        toggleLoginLogout();
     renderShop();
 }
 
@@ -65,9 +65,9 @@ function renderCart() {
     root.appendChild(proCard);
 
     for (let i = 0; i < cart.length; i++) {
-        let item = products.find(item => item.id === cart[i]);
+        let item = products.find(item => item.id === cart[i].id);
         proCard.innerHTML +=
-            `<div class="card" id="">
+            `<div class="card" id="card-${item.id}">
                 <img src="${item.image}" alt="">
                 <span>${item.brand}</span>
                 <h1>${item.title}</h1>
@@ -76,24 +76,81 @@ function renderCart() {
                     <h4>${item.price} <span>EGP</span></h4>
                     <button id="remove-button" onclick="removeFromCart(${item.id})">Remove</button>
                 </div>
-            </div>`
+                <div class="items-count">
+                    <h4 id="count-${item.id}">${cart[i].count} <span>items</span></h4>
+                    <button id="decrement-item" onclick="decrementCartItem(${cart[i].id})">-</button>
+                    <button id="increment-item" onclick="incrementCartItem(${cart[i].id})">+</button>
+                </div>
+            </div>`;
     }
 }
 
+
 function addToCart(id) {
     console.log("ID of Item added:", id);
-    cart.push(id);
+    // cart.push(id);
+    const existingItem = cart.find(item => item.id === id);
+    if (existingItem) {
+        existingItem.count += 1;
+    } else {
+        cart.push({ id: id, count: 1 });
+    }
     alert("Added item to cart successfully")
 }
 
-
 function removeFromCart(id) {
+    const card = document.getElementById(`card-${id}`)
+    console.log(`card-${id}`);
     console.log("ID of Item to be removed:", id);
     console.log("Cart before removal:", cart);
-    cart = cart.filter(item => item !== id);
+    cart = cart.filter(item => item.id !== id);
     console.log("Cart after removal:", cart);
-    renderCart();
+    card.remove();
+    if (cart.length === 0) {
+        showMessage(
+            {
+                heading: "Your Cart is Empty",
+                paragraph: "It looks like you don’t have any items in your cart. Start adding items to begin shopping!"
+            },
+            "root"
+        );
+    }
     alert("Removed item from cart successfully");
+}
+
+function decrementCartItem(id) {
+    const cardElement = document.getElementById(`card-${id}`)
+    const countsElement = document.getElementById(`count-${id}`)
+    console.log(id);
+    existingItem = cart.find(item => item.id == id);
+    console.log('count: ', existingItem.count, "type: ", typeof (existingItem.count));
+    if (existingItem.count == 1) {
+        cart = cart.filter(item => item.id !== id);
+        cardElement.remove();
+        if (cart.length === 0) {
+            showMessage(
+                {
+                    heading: "Your Cart is Empty",
+                    paragraph: "It looks like you don’t have any items in your cart. Start adding items to begin shopping!"
+                },
+                "root"
+            );
+        }
+    } else {
+        existingItem.count -= 1;
+        countsElement.innerHTML = existingItem.count + ' <span>items</span>';
+    }
+    console.log('after dec', cart);
+}
+
+function incrementCartItem(id) {
+    // const card = document.getElementById(`card-${id}`)
+    const countsElement = document.getElementById(`count-${id}`)
+
+    existingItem = cart.find(item => item.id == id);
+    existingItem.count += 1;
+    countsElement.innerHTML = existingItem.count + ' <span>items</span>';
+    console.log('after inc', cart);
 }
 
 function renderAddItem() {
@@ -280,7 +337,7 @@ function toggleLoginLogout() {
         }
 
         navbarLinks.innerHTML +=
-        `<a id="navbar-cart" href="#" onclick="renderCart()">Cart</a>`;
+            `<a id="navbar-cart" href="#" onclick="renderCart()">Cart</a>`;
 
         if (currentUser.admin) {
             console.log("is admin")
@@ -338,7 +395,7 @@ function renderAllItems() {
 
     for (let i = 0; i < products.length; i++) {
         proCard.innerHTML +=
-            `<div class="card" id="">
+            `<div class="card" id="card-${products[i].id}">
                 <img src="${products[i].image}" alt="">
                 <span>${products[i].brand}</span>
                 <h1>${products[i].title}</h1>
@@ -369,7 +426,7 @@ function searchItem() {
     for (let i = 0; i < products.length; i++) {
         if ((products[i].title.includes(query) || products[i].description.includes(query)) && products[i].price <= max_price) {
             proCard.innerHTML +=
-                `<div class="card">
+                `<div class="card" id="card-${products[i].id}">
                     <img src="${products[i].image}" alt="">
                     <span>${products[i].brand}</span>
                     <h1>${products[i].title}</h1>
@@ -405,7 +462,7 @@ function searchItem() {
 //     for (let i = 0; i < products.length; i++) {
 //         if (products[i].price <= max_price) {
 //             proCard.innerHTML +=
-//                 `<div class="card">
+//                 `<div class="card" id="card-${products[i].id}">
 //                     <img src="${products[i].image}" alt="">
 //                     <span>${products[i].brand}</span>
 //                     <h1>${products[i].title}</h1>
