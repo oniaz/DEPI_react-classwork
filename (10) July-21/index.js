@@ -213,13 +213,11 @@ function renderLogin() {
                 <input id = "user-password" type="password" placeholder="Enter password" minlength="8" required>
                 <span></span>
             </div>
-
                 <input type="submit" class="submit" value="Sign in">
-
-            <p class="signup-link">
+                <p class="signup-link">
                 No account?
-                <a href="#" onclick="renderSignup()">Sign up</a>
-            </p>
+                    <a href="#" onclick="renderSignup()">Sign up</a>
+                </p>
             </form>
         </div>
         `
