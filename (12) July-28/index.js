@@ -13,43 +13,6 @@ let products = [
     { id: 12, brand: "Glamour", title: "Evening Gown", description: "Elegant evening gown for special occasions.", price: "1500", image: "./images/gown.jpg" },
 ];
 
-function fetchProducts() { }
-
-function fetchDetails(id) {
-    const url = `http://localhost:8000/products/${id}`
-
-    fetch(url)
-        .then((res) => {
-            return (res.json());
-        })
-        .then((data) => {
-            return (data);
-        })
-}
-
-function getDetails(id) {
-    const root = document.getElementById("root");
-    root.innerHTML = ""
-
-    const products = fetchDetails(toString(id));
-
-    for (let i = 0; i < products.length; i++) {
-        root.innerHTML +=
-            `<div class="card" id="card-${products[i].id}">
-                <img src="${products[i].image}" alt="">
-                <span>${products[i].brand}</span>
-                <h1>${products[i].title}</h1>
-                <p>${products[i].description}</p>
-                <div class="price">
-                    <h4>${products[i].price} <span>EGP</span></h4>
-                    <button onclick="addToCart(${products[i].id})">add to cart</button>
-                </div>'
-                <button onclick="getDetails(${products[i].id})">details</button>
-            </div>`
-    }
-
-}
-
 let users = [
     { email: "admin@gmail.com", password: "12345678", admin: true },
     { email: "user@gmail.com", password: "11223344", admin: false }
@@ -78,6 +41,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
     dummyUserLogin();
     renderShop();
 });
+
+async function fetchItemDetails(id) {
+    const url = `http://localhost:8000/products/${id}`;
+
+    return fetch(url)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+            return (data);
+        });
+}
+
+function renderDetails(id) {
+    const root = document.getElementById("root");
+    root.innerHTML = ""
+
+    fetchItemDetails(id)
+        .then((products) => {
+            root.innerHTML +=
+                `<div class="card" id="card-${products.id}">
+                    <img src="${products.image}" alt="">
+                    <span>${products.brand}</span>
+                    <h1>${products.title}</h1>
+                    <p>${products.description}</p>
+                    <div class="price">
+                        <h4>${products.price} <span>EGP</span></h4>
+                        <button onclick="addToCart(${products.id})">add to cart</button>
+                    </div>
+                </div>`
+        });
+}
 
 function renderCart() {
     console.log(cart);
@@ -122,10 +118,8 @@ function renderCart() {
     }
 }
 
-
 function addToCart(id) {
     console.log("ID of Item added:", id);
-    // cart.push(id);
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
         existingItem.count += 1;
@@ -181,7 +175,6 @@ function decrementCartItem(id) {
 }
 
 function incrementCartItem(id) {
-    // const card = document.getElementById(`card-${id}`)
     const countsElement = document.getElementById(`count-${id}`)
 
     existingItem = cart.find(item => item.id == id);
@@ -438,8 +431,8 @@ function renderAllItems() {
                 <div class="price">
                     <h4>${products[i].price} <span>EGP</span></h4>
                     <button onclick="addToCart(${products[i].id})">add to cart</button>
-                </div>'
-                <button onclick="getDetails(${products[i].id})">details</button>
+                </div>
+                <button onclick="renderDetails(${products[i].id})">details</button>
             </div>`
     }
 }
@@ -486,44 +479,6 @@ function searchItem() {
     }
 }
 
-// function searchByPrice() {
-//     const max_price = Number(document.getElementById('price-search-input').value);
-//     const proCard = document.getElementById("pro-card")
-
-//     proCard.innerHTML = ''
-//     // max_price = parseInt(max_price)
-//     // console.log(max_price);
-//     // console.log(typeof (max_price));
-
-//     for (let i = 0; i < products.length; i++) {
-//         if (products[i].price <= max_price) {
-//             proCard.innerHTML +=
-//                 `<div class="card" id="card-${products[i].id}">
-//                     <img src="${products[i].image}" alt="">
-//                     <span>${products[i].brand}</span>
-//                     <h1>${products[i].title}</h1>
-//                     <p>${products[i].description}</p>
-//                     <div class="price">
-//                         <h4>${products[i].price} <span>EGP</span></h4>
-//                         <button>add to cart</button>
-//                     </div>
-//                 </div>`
-//         }
-//     }
-
-//     if (proCard.innerHTML == '') {
-//         showMessage(
-//             {
-//                 heading: "No Items Found",
-//                 paragraph: `Sorry, there are no items under ${max_price} EGP. Please try a higher price range or adjust your search criteria.`
-//             },
-//             "pro-card"
-//         );
-//     }
-// }
-
-
-
 function showMessage(message, parentContainerDiv) {
     const parentContainer = document.getElementById(parentContainerDiv);
     const messageContainer = document.createElement('div');
@@ -542,7 +497,3 @@ function showMessage(message, parentContainerDiv) {
     messageContainer.appendChild(messageBox);
     parentContainer.appendChild(messageContainer);
 }
-
-// <div class="input-container">
-//     <input id="item-image" type="file" accept="image/*">
-// </div>
