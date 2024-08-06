@@ -227,8 +227,9 @@ function renderCart() {
 
     fetchAllProducts().then((products) => {
         for (let i = 0; i < cart.length; i++) {
-            let item = products.find(item => item.id === cart[i].id);
-            proCard.innerHTML +=
+            fetchProductById(cart[i].id)
+            .then((item) => {
+                proCard.innerHTML +=
                 `<div class="card" id="card-${item.id}">
                     <img src="${item.image}" alt="">
                     <span>${item.brand}</span>
@@ -240,10 +241,11 @@ function renderCart() {
                     </div>
                     <div class="items-count">
                         <h4 id="count-${item.id}">${cart[i].count} <span>items</span></h4>
-                        <button id="decrement-item" onclick="decrementCartItem('${cart[i].id}')">-</button>
-                        <button id="increment-item" onclick="incrementCartItem('${cart[i].id}')">+</button>
+                        <button id="decrement-item" onclick="decrementCartItem('${item.id}')">-</button>
+                        <button id="increment-item" onclick="incrementCartItem('${item.id}')">+</button>
                     </div>
                 </div>`;
+            })
         }
     })
 }
