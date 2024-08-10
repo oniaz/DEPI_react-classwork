@@ -5,6 +5,7 @@ function searchMovie() {
     .then((res) => {
       return res.json();
     })
+    .then(results => {
       // console.log(results);
       results.Search.forEach(movie => {
         console.log(movie.Title);
