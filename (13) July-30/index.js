@@ -37,10 +37,23 @@ function dummyUserLogin() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    // dummyAdminLogin();
-    dummyUserLogin();
+    dummyAdminLogin();
+    // dummyUserLogin();
     renderShop();
 });
+
+async function fetchProducts() {
+    const url = `http://localhost:8000/products`;
+
+    return fetch(url)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+            return (data);
+        });
+}
 
 async function fetchItemDetails(id) {
     const url = `http://localhost:8000/products/${id}`;
@@ -53,6 +66,49 @@ async function fetchItemDetails(id) {
             console.log(data);
             return (data);
         });
+}
+
+function addItem(event) {
+    event.preventDefault();
+    const itemTitle = document.getElementById("item-title").value
+    const itemBrand = document.getElementById("item-brand").value
+    const itemDescription = document.getElementById("item-description").value
+    const itemPrice = document.getElementById("item-price").value
+
+    if (!(itemTitle && itemBrand && itemDescription && itemPrice)) {
+        return;
+    }
+
+    let item = {
+        id: (products.length) + 1,
+        brand: itemBrand,
+        title: itemTitle,
+        description: itemDescription,
+        price: itemPrice,
+        image: "./images/noimage.png"
+    }
+    item = JSON.stringify(item);
+
+    const url = `http://localhost:8000/products/`;
+
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'content-type': "application/json"
+        },
+        body: item
+    })
+        .then((res) => {
+            alert("Item added successfully!");
+        })
+}
+
+function deleteItem(id) {
+    const url = `http://localhost:8000/products/${id}`;
+    return fetch(url, { method: 'DELETE' })
+        .then((res) => {
+            renderShop();
+        })
 }
 
 function renderDetails(id) {
@@ -79,7 +135,6 @@ function renderCart() {
     console.log(cart);
 
     const root = document.getElementById("root");
-
 
     root.innerHTML = ""
     if (cart.length == 0) {
@@ -175,6 +230,7 @@ function decrementCartItem(id) {
 }
 
 function incrementCartItem(id) {
+    // const card = document.getElementById(`card-${id}`)
     const countsElement = document.getElementById(`count-${id}`)
 
     existingItem = cart.find(item => item.id == id);
@@ -210,22 +266,6 @@ function renderAddItem() {
         </form>
     </div>
     `
-}
-
-function addItem(event) {
-    event.preventDefault();
-    const itemTitle = document.getElementById("item-title").value
-    const itemBrand = document.getElementById("item-brand").value
-    const itemDescription = document.getElementById("item-description").value
-    const itemPrice = document.getElementById("item-price").value
-
-    if (!(itemTitle && itemBrand && itemDescription && itemPrice)) {
-        return;
-    }
-
-    item = { id: (products.length) + 1, brand: itemBrand, title: itemTitle, description: itemDescription, price: itemPrice, image: "./images/noimage.png" }
-    products.push(item);
-    alert("Item added successfully!")
 }
 
 function renderLogin() {
@@ -379,8 +419,6 @@ function toggleLoginLogout() {
     }
 }
 
-
-
 function renderShop() {
     const root = document.getElementById("root");
 
@@ -420,25 +458,24 @@ function renderShop() {
 
 function renderAllItems() {
     const proCard = document.getElementById("pro-card");
-
-    for (let i = 0; i < products.length; i++) {
-        proCard.innerHTML +=
-            `<div class="card" id="card-${products[i].id}">
-                <img src="${products[i].image}" alt="">
-                <span>${products[i].brand}</span>
-                <h1>${products[i].title}</h1>
-                <p>${products[i].description}</p>
-                <div class="price">
-                    <h4>${products[i].price} <span>EGP</span></h4>
-                    <button onclick="addToCart(${products[i].id})">add to cart</button>
-                </div>
-                <button onclick="renderDetails(${products[i].id})">details</button>
-            </div>`
-    }
+    fetchProducts().then((products) => {
+        for (let i = 0; i < products.length; i++) {
+            proCard.innerHTML +=
+                `<div class="card" id="card-${products[i].id}">
+                        <img src="${products[i].image}" alt="">
+                        <span>${products[i].brand}</span>
+                        <h1>${products[i].title}</h1>
+                        <p>${products[i].description}</p>
+                        <div class="price">
+                            <h4>${products[i].price} <span>EGP</span></h4>
+                            <button onclick="addToCart(${products[i].id})">add to cart</button>
+                        </div>
+                        <button onclick="renderDetails(${products[i].id})">details</button>
+                        <button onclick="deleteItem(${products[i].id})">delete from db</button>
+                    </div>`
+        }
+    });
 }
-
-// 
-// 
 
 function searchItem() {
     const proCard = document.getElementById("pro-card")
