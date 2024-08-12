@@ -5,4 +5,4 @@
 - defining async functions
 -try/catch
 - react:
-    npx creae -react -app appname
+    npx create-react-app appname
