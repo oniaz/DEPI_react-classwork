@@ -3,7 +3,7 @@ import { useState } from 'react';
 import shirt_img from './floral_shirt.jpg'
 
 function App() {
-    let products = [
+    const products = [
         { id: 1, brand: "TrendWear", title: "Casual Shirt", description: "Floral print. Comfortable casual shirt for everyday wear.", price: "250", image: shirt_img },
         { id: 2, brand: "TrendWear", title: "Casual Shirt", description: "Lemon Print. Comfortable casual shirt for everyday wear.", price: "250", image: shirt_img },
         { id: 3, brand: "TrendWear", title: "Casual Shirt", description: "Stripes Print. Comfortable casual shirt for everyday wear.", price: "250", image: shirt_img },
@@ -24,8 +24,10 @@ function App() {
 
     return (
         <>
-            <button onClick={handleClick}>Delete All Products</button>
-            <div key="pro-card">
+            <hr></hr>
+            <p className='task-desc'> <span className='task-title'>Task:</span> delete all cards</p>
+            <button  className="delete-button" onClick={handleClick}>Delete All Products</button>
+            <div className="pro-card">
                 {productCards.map((productCard) => {
                     return (
                         <div className="card">
