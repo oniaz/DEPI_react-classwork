@@ -2,21 +2,20 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
+  const [name, setName] = useState('ali')
   var [blogs, setBlogs] = useState(['blog1', 'blog2', 'blog3']);
-  // const [name, setName] = useState('ali')
 
   console.log(blogs);
 
   const handleclick = () => {
+    setName('omar')
+    console.log(name);
     setBlogs(['blog1', 'blog2', 'blog3', 'blog4']);
   }
-  // const handleClick = () => {
-  //   setName('omar')
-  //   console.log(name);
-  // }
 
   return (
     <>
+      {name}
       {blogs.map((blog) => {
         return <h1> {blog}</h1>
       })
@@ -24,14 +23,6 @@ function App() {
       <button onClick={handleclick}>change</button>
     </>
   );
-  // return (
-  //   <>
-  //     <h1>
-  //       {name}
-  //     </h1>
-  //     <button onClick={handleClick}>change</button>
-  //   </>
-  // )
 }
 
 export default App;
