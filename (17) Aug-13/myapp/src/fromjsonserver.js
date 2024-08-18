@@ -55,11 +55,12 @@ function Fjs() {
                     <circle r="20" cy="50" cx="50"></circle>
                 </svg></div>
             }
+            {filteredBlogs &&
             <div className="blog-container">
                 {filteredBlogs.map((blog) => (
                     <Blog key={blog.id} blog={blog} />
                 ))}
-            </div>
+            </div>}
         </>
     );
 
