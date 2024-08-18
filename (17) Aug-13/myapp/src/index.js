@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Fjs from './fromjsonserver';
-// import Task from './Task';
+import Task from './Task';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App/> */}
-    <Fjs/>
+    {/* <Fjs/> */}
+    <Task/>
   </React.StrictMode>
 );
 
