@@ -1,0 +1,40 @@
+{
+  "blogs": [
+    {
+      "id": "blog1",
+      "title": "Understanding JavaScript Closures",
+      "author": "Jane Doe",
+      "content": "In this blog post, we'll explore JavaScript closures, what they are, how they work, and where you might use them in your code."
+    },
+    {
+      "id": "blog2",
+      "title": "The Future of AI: What to Expect in the Next Decade",
+      "author": "John Smith",
+      "content": "Artificial Intelligence is evolving rapidly. This article discusses potential advancements in AI and their implications for various industries."
+    },
+    {
+      "id": "blog3",
+      "title": "A Guide to Responsive Web Design",
+      "author": "Emily Clark",
+      "content": "Responsive web design ensures your website looks great on all devices. Learn the key principles and techniques for creating responsive designs."
+    },
+    {
+      "id": "blog4",
+      "title": "How to Build a RESTful API with Node.js",
+      "author": "Michael Johnson",
+      "content": "Building a RESTful API with Node.js can be straightforward. This blog walks you through the process, from setting up the environment to deploying your API."
+    },
+    {
+      "id": "blog5",
+      "title": "The Benefits of Cloud Computing for Small Businesses",
+      "author": "Sarah Lee",
+      "content": "Cloud computing offers numerous advantages for small businesses, including cost savings, scalability, and enhanced security. Here's how it can benefit your business."
+    },
+    {
+      "id": "blog6",
+      "title": "Exploring the Basics of Machine Learning",
+      "author": "David Brown",
+      "content": "Machine learning is transforming the way we interact with technology. This introductory post covers the basic concepts and types of machine learning."
+    }
+  ]
+}
