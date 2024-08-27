@@ -1,5 +1,5 @@
 # Session 13
-## July/30/2024
+## Aug/6/2024
 
-- fetch DELETE
-- fetch POST
+- login with fetch
+- OMDB api
