@@ -1,6 +1,10 @@
-# Session 9
+# Session 
 ## July/16/2024
 
-- Continue e-commerce project:
-  - Add login/signup feature
-  - Add "add new items to store" functionality for user
+- Express JS:
+  - require & export
+  - routes
+  - views
+- MongoDB:
+  - MongoDB Atlas
+  - connecting to Express app
