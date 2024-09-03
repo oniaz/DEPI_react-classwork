@@ -1,0 +1,43 @@
+.workout-card {
+  background-color: #F5F5F5;
+  /* Light background for cards */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.workout-title {
+  font-size: 1.5rem;
+  color: #229799;
+  /* Teal color for titles */
+}
+
+.workout-description {
+  font-size: 1rem;
+  color: #424242;
+  margin: 0.5rem 0;
+}
+
+.workout-sets {
+  font-size: 0.9rem;
+  color: #424242;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  /* Red color for delete button */
+  color: #fff;
+  /* White text color */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.delete-button:hover {
+  background-color: #e60000;
+  /* Darker red on hover */
+}
