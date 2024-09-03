@@ -1,0 +1,72 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    color: #424242;
+  }
+  
+  /* Add Workout page styles */
+  .add-workout {
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+    color: #229799; /* Teal color for heading */
+  }
+  
+  .workout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .workout-form label {
+    font-size: 1rem;
+    color: #424242;
+  }
+  
+  .workout-form input, .workout-form textarea {
+    padding: 0.8rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  .workout-form textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+  }
+  
+  .submit-button {
+    background-color: #48CFCB; /* Teal color for button */
+    color: #424242; /* Dark text color */
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #229799; /* Darker teal on hover */
+  }
+  

@@ -1,0 +1,46 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; /* Light background for the app */
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #229799; /* Darker teal for the navbar */
+    padding: 1rem;
+    color: #F5F5F5; /* Light text color */
+  }
+  
+  .navbar-logo a {
+    color: #F5F5F5; /* Light color for logo text */
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar-links a {
+    color: #F5F5F5; /* Light color for link text */
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-links a:hover {
+    color: #48CFCB; /* Teal color on hover */
+  }
+  

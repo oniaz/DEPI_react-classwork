@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "name": "fitnessFan01",
+      "email": "fitnessfan01@example.com",
+      "password": "hashed_password_123",
+      "id": "59ed"
+    },
+    {
+      "name": "workoutWarrior",
+      "email": "workoutwarrior@example.com",
+      "password": "hashed_password_456",
+      "id": "36bb"
+    },
+    {
+      "name": "gymGuru",
+      "email": "gymguru@example.com",
+      "password": "hashed_password_789",
+      "id": "6522"
+    },
+    {
+      "id": "36da",
+      "name": "Omnia",
+      "email": "omnia@gmail.com",
+      "password": "12345678"
+    }
+  ],
+  "workouts": [
+    {
+      "title": "Push-ups",
+      "description": "A basic upper body workout targeting chest, shoulders, and triceps.",
+      "sets": "3",
+      "id": "9b46"
+    },
+    {
+      "title": "Squats",
+      "description": "A lower body exercise focusing on quadriceps, hamstrings, and glutes.",
+      "sets": "4",
+      "id": "aa0a"
+    },
+    {
+      "title": "Plank",
+      "description": "Core stability exercise that strengthens the abdominals and back muscles.",
+      "sets": "3",
+      "id": "00ac"
+    },
+    {
+      "id": "684f",
+      "title": "Lunges",
+      "description": "A lower body exercise that targets the quads, hamstrings, and glutes, and helps improve balance.",
+      "sets": "3"
+    }
+  ]
+}
